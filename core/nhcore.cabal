@@ -184,3 +184,4 @@ test-suite nhcore-test
         base,
         nhcore,
         hspec,
+    build-tool-depends: hspec-discover:hspec-discover
