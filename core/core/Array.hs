@@ -196,19 +196,6 @@ first :: Array a -> Maybe a
 first = unwrap .> (!? 0)
 
 
--- | Return @Just@ the last element or @Nothing@ if the index is empty.
---
--- > last (fromLinkedList [0,1,2]) == Just 2
--- > last (fromLinkedList [])      == Nothing
-last :: Array a -> Maybe a
-last =
-  unwrap
-    .> \v ->
-      if Data.Vector.null v
-        then Nothing
-        else Just (Data.Vector.last v)
-
-
 -- | Set the element at a particular index. Returns an updated array.
 --
 -- If the index is out of range, the array is unaltered.
@@ -419,6 +406,8 @@ any predicate (Array vector) = Data.Vector.any predicate vector
 
 -- | Returns the last element in the array.
 -- If the array is empty, returns `Nothing`.
+-- > last (fromLinkedList [0,1,2]) == Just 2
+-- > last (fromLinkedList [])      == Nothing
 last :: forall (value :: Type). Array value -> Maybe value
 last (Array vector) = do
   let len = Data.Vector.length vector
